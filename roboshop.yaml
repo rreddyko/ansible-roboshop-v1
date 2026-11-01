@@ -4,7 +4,7 @@
   vars: 
     instances: ["mongodb", "redis", "mysql", "rabbitmq"]
     action: create
-    domain: "rameshkotha572.online"
+    domain_name: "rameshkotha572.online"
     ami_id: ami-0055977a6e828a4f4
   tasks:
   - name: create ec2-instance
@@ -20,9 +20,25 @@
     when: action == "create"
     register: ec2_output
 
-  - name: print ec2_output
-    debug:
-      msg: "{{ ec2_output }}"
+  # - name: print ec2_output
+  #   debug:
+  #     msg: "{{ ec2_output }}"
+
+  - name: create R53 records
+    amazon.aws.route53:
+      state: present
+      zone: "{{ domain_name }}"
+      record: "{{ item.item }}.{{ domain_name }}" #mongodb.rameshkotha572.online
+      type: A
+      ttl: 1
+      value: "{{ item.instances[0].private_ip_address }}"
+      overwrite: true
+    loop: "{{ ec2_output}}"
+    when: action == "create"
+    
+
+
+
 
 
 

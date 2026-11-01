@@ -6,3 +6,6 @@
     copy:
       src: mongo.repo
       dest: /etc/yum.repos.d/mongo.repo
+  - name: inventory vars
+    debug:
+      msg: "{{app_name}}"

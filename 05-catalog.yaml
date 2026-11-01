@@ -46,3 +46,22 @@
       src: /tmp/catalog.zip
       dest: /app/
       remote_src: yes
+
+  - name: install dependencies
+    community.general.npm:
+      path: /app
+
+  - name : copy the catalog service file
+    template:
+      src: catalog.service.j2
+      dest: /etc/systemd/sysmte/catalog.service
+
+  - name: copying the mongorepo
+    copy:
+      src: mongo.repo
+      dest: /etc/yum.repos.d/mongo.repo
+
+  - name: installing mongo client
+    dnf:
+      name: mongodb-mongosh
+      state: present

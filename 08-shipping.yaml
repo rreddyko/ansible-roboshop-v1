@@ -55,7 +55,7 @@
   - name: dowloading shipping application
     get_url:
       url: https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/shipping-v4.zip
-      path: /tmp/shipping.zip
+      dest: /tmp/shipping.zip
 
   - name: unzip shipping
     unarchive:

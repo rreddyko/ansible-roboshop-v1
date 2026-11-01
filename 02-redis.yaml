@@ -1,5 +1,6 @@
 - name: installing redis
   hosts: redis
+  become: yes
   tasks: 
   - name: enable redis 7
     command: dnf module disable redis:7 -y

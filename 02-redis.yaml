@@ -20,6 +20,6 @@
     lineinfile:
       path: /etc/redis/redis.conf
       regexp: '^#?protected-mode yes'
-      replcae: 'protected-mode no'
+      replace: 'protected-mode no'
 
   

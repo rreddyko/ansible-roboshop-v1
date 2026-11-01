@@ -22,4 +22,8 @@
       regexp: '^#?protected-mode yes'
       line: 'protected-mode no'
 
-  
+  - name: enable and start
+    service:
+      name: redis
+      state: restarted
+      enabled: yes

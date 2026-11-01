@@ -21,4 +21,23 @@
       shell: /sbin/login
       comment: "roboshop system user"
 
+  - name: remove existing directory
+    file:
+      path: /app
+      state: absent
+  
+  - name: remove catalog.zip
+    file:
+      path: /tmp/catalog.zip
+      state: absent
+
+  - name: creating app directory
+    file:
+      path: /app
+      state: directory
+
+  - name: download catalog application
+    get_url:
+      url: https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/catalogue-v4.zip
+      dest: /tmp/catalogue.zip
 

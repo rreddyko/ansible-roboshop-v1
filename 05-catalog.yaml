@@ -76,5 +76,15 @@
 
   - name: load the products
     shell: mongosh --host {{ mongodb_host }} </app/db/master-data.js
-    when: product_count.stdout == 0
+    when: product_count.stdout | int  == 0
+
+  - name: daemon reload
+    systemd_service:
+      daemon_reload: true
+  
+  - name: start and enable catalog
+    service: 
+      name: catalog
+      state: present
+      enabled: yes
 

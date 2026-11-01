@@ -3,3 +3,4 @@ ansible_password: DevOps321
 
 mongodb_host: mongodb.rameshkotha572.online
 redis_host: redis.rameshkotha572.online
+catalog_host: catalog.rameshkotha572.online

@@ -32,8 +32,9 @@
       state: absent
   
   - name: creating app directory
-    file: /app
-    state: directory
+    file: 
+      path: /app
+      state: directory
 
   - name: downloading user application
     get_url:

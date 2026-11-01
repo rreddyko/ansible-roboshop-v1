@@ -64,7 +64,7 @@
     service: 
       name: user
       state: restarted
-      enalbed: yes
+      enabled: yes
 
 
 

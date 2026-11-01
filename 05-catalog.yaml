@@ -85,6 +85,6 @@
   - name: start and enable catalog
     service: 
       name: catalog
-      state: present
+      state: restarted
       enabled: yes
 

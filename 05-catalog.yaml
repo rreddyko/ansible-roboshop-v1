@@ -45,4 +45,4 @@
     unarchive:
       src: /tmp/catalog.zip
       dest: /app/
-      
+      remote_src: yes

@@ -20,6 +20,12 @@
       name: mongod
       state: started
       enabled: yes
-  
+
+  - name: allow remote connection and change default content
+    replace:
+      path: /etc/mongod.conf
+      regexp: '127.0.0.1'
+      replace: '0.0.0.0'
+      
 
     

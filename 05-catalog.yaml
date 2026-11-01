@@ -54,7 +54,7 @@
   - name : copy the catalog service file
     template:
       src: catalog.service.j2
-      dest: /etc/systemd/sysmte/catalog.service
+      dest: /etc/systemd/system/catalog.service
 
   - name: copying the mongorepo
     copy:

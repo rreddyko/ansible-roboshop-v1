@@ -9,3 +9,17 @@
   - name: inventory vars
     debug:
       msg: "{{app_name}}"
+
+  - name: install mongo
+    package:
+      name: mongodb-org
+      state: present
+
+  - name: start and enable mongodb
+    service:
+      name: mongod
+      state: started
+      enabled: yes
+  
+
+    

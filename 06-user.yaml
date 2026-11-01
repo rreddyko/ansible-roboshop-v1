@@ -49,7 +49,7 @@
 
   - name: install dependencies
     community.general.npm:
-      dest: /app
+      path: /app
   
   - name: copy user service
     template:

@@ -10,11 +10,11 @@
       name: nginx
       state: present
 
-  - name: start and enable nginx
-    service:
-      name: nginx
-      state: started
-      enabled: yes
+  # - name: start and enable nginx
+  #   service:
+  #     name: nginx
+  #     state: started
+  #     enabled: yes
   
   - name: find all the contents in the directory
     ansible.builtin.find:

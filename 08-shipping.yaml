@@ -89,6 +89,8 @@
     command: mysql -h "{{ mysql_host }}" -u root -p"{{ mysql_root_password }}" -N -B -e "SELECT COUNT(*) FROM cities.cities;"
     register: cities_count
     ignore_errors: true
+    tags:
+      - sql
   
   - name: print the cities_count
     debug:
@@ -114,7 +116,7 @@
     service:  
       name: shipping
       state: restarted
-      enbled: yes
+      enabled: yes
 
 
 

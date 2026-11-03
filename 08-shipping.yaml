@@ -11,6 +11,7 @@
       - maven
       - java-25-openjdk-devel
       - maven-openjdk25 # installing this as we need not to set  JAVA_HOME again
+      - mysql  
       state: present
 
   # - name: find java 25 path
@@ -64,10 +65,57 @@
       dest: /app
       remote_src: yes
   
+  - name: mvn version without JAVA_HOME
+    command: mvn --version
+    args: 
+      child: /app
+    register: mv_default
+  
+  - name: printing the maven version in /app
+    debug:
+      msg: "{{ mv_default.stdout_lines }}"
+  
   - name: installing dependencies
     command: mvn clean package
     args:
       chdir: /app
+
+  - name: moving the jar file
+    command: mv target/shipping.jar shipping.jar
+    args:
+      child: /app
+
+  - name: checking the count in the shipping database
+    command: mysql -h "{{ shipping_host }}" -u root -p"{{ mysql_root_password }}" -N -B -e "SELECT COUNT(*) FROM cities.cities;
+    register: cities_count
+  
+  - name: print the cities_count
+    debug:
+      msg: "{{ cities_count }}"
+
+  - name: loading cities data into mysql
+    shell: mysql -h "{{ shipping_host }}" -uroot -p"{{ mysql_root_password }}" < /app/db/master-data.sql
+    when: cities_count.rc != 0 or cities_count.stdout == 0
+  
+  - name: creating app user
+    shell: mysql -h "{{ shipping_host }}" -uroot -p"{{ mysql_root_password }}" < /app/db/app-user.sql
+
+  - name: copying shipping service
+    copy:
+      src: shipping.service.j2
+      dest: /etc/systemd/system/shipping.service
+
+  - name: daemon reload
+    systemd.service:
+      daemon_reload: true
+  
+  - name: start and enable service
+    service:  
+      name: shipping
+      state: restarted
+      enbled: yes
+
+
 
 
 

@@ -2,7 +2,7 @@
   hosts: localhost
   connection: local
   vars: 
-    instances: ["mongodb", "redis", "mysql", "rabbitmq"]
+    instances: ["mongodb", "redis", "mysql", "rabbitmq", "catalog", "cart", "user", "shipping"]
     action: create
     domain_name: "rameshkotha572.online"
     ami_id: ami-0055977a6e828a4f4

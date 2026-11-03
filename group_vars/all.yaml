@@ -4,3 +4,10 @@ ansible_password: DevOps321
 mongodb_host: mongodb.rameshkotha572.online
 redis_host: redis.rameshkotha572.online
 catalog_host: catalog.rameshkotha572.online
+shipping_host: shipping.rameshkotha572.online
+cart_host: cart.rameshkotha572.online
+mysql_host: mysql.rameshkotha572.online
+mysql_root_password: RoboShop@1
+shipping_db_user: shipping
+shipping_db_password: RoboShop@1
+

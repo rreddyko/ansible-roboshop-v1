@@ -49,6 +49,8 @@
     template:
       src: roboshop.conf.j2
       dest: /etc/nginx/default.d/roboshop.conf
+      tags:
+      - ft
   
   - name: restart nginx
     service:

@@ -95,6 +95,8 @@
   - name: print the cities_count
     debug:
       msg: "{{ cities_count }}"
+    tags:
+      - sql
 
   - name: loading cities data into mysql
     shell: mysql -h "{{ mysql_host }}" -uroot -p"{{ mysql_root_password }}" < /app/db/master-data.sql

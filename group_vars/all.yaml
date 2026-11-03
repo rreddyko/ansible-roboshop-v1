@@ -8,7 +8,7 @@ shipping_host: shipping.rameshkotha572.online
 payment_host: payment.rameshkotha572.online
 rabbitmq_host: rabbitmq.rameshkotha572.online
 cart_host: cart.rameshkotha572.online
-user_host: user.rameshkotha571.online
+user_host: user.rameshkotha572.online
 mysql_host: mysql.rameshkotha572.online
 mysql_root_password: RoboShop@1
 shipping_db_user: shipping

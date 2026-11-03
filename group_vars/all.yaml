@@ -5,6 +5,7 @@ mongodb_host: mongodb.rameshkotha572.online
 redis_host: redis.rameshkotha572.online
 catalog_host: catalog.rameshkotha572.online
 shipping_host: shipping.rameshkotha572.online
+payment_host: payment.rameshkotha572.online
 rabbitmq_host: rabbitmq.rameshkotha572.online
 cart_host: cart.rameshkotha572.online
 user_host: user.rameshkotha571.online

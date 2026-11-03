@@ -86,7 +86,7 @@
       child: /app
 
   - name: checking the count in the shipping database
-    command: mysql -h "{{ shipping_host }}" -u root -p"{{ mysql_root_password }}" -N -B -e "SELECT COUNT(*) FROM cities.cities;
+    command: mysql -h "{{ shipping_host }}" -u root -p"{{ mysql_root_password }}" -N -B -e "SELECT COUNT(*) FROM cities.cities;"
     register: cities_count
   
   - name: print the cities_count

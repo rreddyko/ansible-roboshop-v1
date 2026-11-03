@@ -3,7 +3,7 @@
   become: yes
   tasks:
   - name: enable nginx 1.26
-    command: dnf module enable nginx:1.26
+    command: dnf module enable nginx:1.26 -y
   
   - name: install nginx
     dnf:

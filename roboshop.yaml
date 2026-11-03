@@ -60,7 +60,7 @@
     when: action == "delete"
   
   - name: delete R53 records for front end
-    amazon.awa.route53:
+    amazon.aws.route53:
       state: absent
       zone: "{{ domain_name }}"
       record: "{{ domain_name }}"

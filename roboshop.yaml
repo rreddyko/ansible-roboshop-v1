@@ -2,7 +2,7 @@
   hosts: localhost
   connection: local
   vars: 
-    instances: ["mongodb", "redis", "mysql", "rabbitmq", "catalog", "cart", "user", "shipping"]
+    instances: ["mongodb", "redis", "mysql", "rabbitmq", "catalog", "cart", "user", "shipping","payment", "frontend"]
     action: create
     domain_name: "rameshkotha572.online"
     ami_id: ami-0055977a6e828a4f4
@@ -36,6 +36,18 @@
     loop: "{{ ec2_output.results }}"
     when: action == "create"
 
+  - name: create R53 record for frontend
+    amazon.aws.route53:
+      state: present
+      zone: "{{ domain_name }}"
+      record: "{{ domain_name }}"
+      type: A
+      ttl: 1
+      value: "{{ item.instances[0].public_ip_address }}"
+      overwrite: true
+    when: action == "create" and item.item == "frontend"
+
+
   - name: delete R53 records
     amazon.aws.route53:
       state: absent
@@ -45,6 +57,16 @@
       type: A
     loop: "{{ instances }}"
     when: action == "delete"
+  
+  - name: delete R53 records for front end
+    amazon.awa.route53:
+      state: absent
+      zone: "{{ domain_name }}"
+      record: "{{ domain_name }}"
+      ttl: 1
+      type: A
+    loop: "{{ instances }}"
+    when: action == "delete" and item.item == "frontend"
   
   - name: delete ec2 instances
     amazon.aws.ec2_instance:

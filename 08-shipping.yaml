@@ -106,7 +106,7 @@
       dest: /etc/systemd/system/shipping.service
 
   - name: daemon reload
-    systemd.service:
+    systemd_service:
       daemon_reload: true
   
   - name: start and enable service

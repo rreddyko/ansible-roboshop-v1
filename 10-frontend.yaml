@@ -34,16 +34,27 @@
       state: absent
     loop: "{{ directory_contents.files }}"
   
-  # - name: downlading the application
-  #   get_url:
-  #     url: https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/frontend-v4.zip
-  #     dest: /tmp/frontend.zip
+  - name: downlading the application
+    get_url:
+      url: https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/frontend-v4.zip
+      dest: /tmp/frontend.zip
   
-  # - name: unzip frontend
-  #   unarchive: 
-  #     src: /tmp/frontend.zip
-  #     dest: /usr/share/nginx/html/
-  #     remote_src: yes
+  - name: unzip frontend
+    unarchive: 
+      src: /tmp/frontend.zip
+      dest: /usr/share/nginx/html/
+      remote_src: yes
+
+  - name: copy roboshop config
+    template:
+      src: roboshop.conf.j2
+      dest: /etc/nginx/default.d/roboshop.conf
+  
+  - name: restart nginx
+    service:
+      name: nginx
+      state: restarted
+      enabled: yes
 
   
 

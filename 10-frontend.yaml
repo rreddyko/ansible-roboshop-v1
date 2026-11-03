@@ -49,8 +49,10 @@
     template:
       src: roboshop.conf.j2
       dest: /etc/nginx/default.d/roboshop.conf
-      tags:
-      - ft
+      
+  - name: print the user_host
+    debug:
+      msg: "{{ user_host }}"
   
   - name: restart nginx
     service:

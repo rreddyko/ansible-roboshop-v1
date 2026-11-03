@@ -29,7 +29,7 @@
       msg: "{{ directory_contents }}"
   
   - name: delete the discovered contents
-    ansibile.builtin.file:
+    ansible.builtin.file:
       path: "{{ item.path }}"
       state: absent
     loop: "{{ directory_contents.files }}"
